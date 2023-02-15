@@ -41,20 +41,13 @@ jobs:
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  create_release_draft:
-    permissions:
-      contents: write
-      pull-requests: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Get changelog
-        run: |
-          echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
-          awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
-          echo 'EOF'>> $GITHUB_ENV
-      - uses: release-drafter/release-drafter@v5
+          run: |
+            echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
+            awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
+            echo 'EOF'>> $GITHUB_ENV
+      - name: Publish Release Notes
+        uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
