@@ -42,10 +42,10 @@ jobs:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get changelog
-          run: |
-            echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
-            awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
-            echo 'EOF'>> $GITHUB_ENV
+        run: |
+          echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
+          awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
+          echo 'EOF'>> $GITHUB_ENV
       - name: Publish Release Notes
         uses: release-drafter/release-drafter@v5
         env:
