@@ -53,6 +53,8 @@ signs:
       - "${signature}"
       - "--detach-sign"
       - "${artifact}"
+changelog:
+  skip: true
 release:
   # Visit your project's GitHub Releases page to publish this release.
   draft: true
