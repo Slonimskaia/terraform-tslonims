@@ -55,4 +55,4 @@ jobs:
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG_BODY: env.CHANGELOG_BODY
+          CHANGELOG_BODY: "${{ env.CHANGELOG_BODY }}"
