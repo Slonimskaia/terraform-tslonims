@@ -39,14 +39,6 @@ jobs:
           echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
           awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
           echo 'EOF'>> $GITHUB_ENV
-#      - name: Publish Release Notes
-#        uses: release-drafter/release-drafter@v5
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag: ${{ github.ref_name }}
-#          name: "${{ github.ref_name }}"
-#          footer: "${{ env.CHANGELOG_BODY }}"
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -55,4 +47,4 @@ jobs:
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG_BODY: "${{ env.CHANGELOG_BODY }}"
+          CHANGELOG_BODY: ${{ env.CHANGELOG_BODY }}
