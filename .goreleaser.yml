@@ -60,7 +60,7 @@ release:
   draft: true
   header: |
     # RELEASE NOTES
-    awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md
+    {{ env.CHANGELOG_BODY }}
   extra_files:
     - glob: 'terraform-provider-manifest.json'
       name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'

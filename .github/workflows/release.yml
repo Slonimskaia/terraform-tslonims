@@ -34,11 +34,11 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-#      - name: Get changelog
-#        run: |
-#          echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
-#          awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
-#          echo 'EOF'>> $GITHUB_ENV
+      - name: Get changelog
+        run: |
+          echo 'CHANGELOG_BODY<<EOF' >> $GITHUB_ENV
+          awk '/## ([0-9]+\.?)+/{n++}; n==1; n==2{exit}' CHANGELOG.md >> $GITHUB_ENV
+          echo 'EOF'>> $GITHUB_ENV
 #      - name: Publish Release Notes
 #        uses: release-drafter/release-drafter@v5
 #        env:
