@@ -60,7 +60,8 @@ release:
   draft: true
   header: |
     # RELEASE NOTES
-    {{ .Env.CHANGELOG_BODY }}
+  footer:
+    '{{ .Env.CHANGELOG_BODY }}'
   extra_files:
     - glob: 'terraform-provider-manifest.json'
       name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
